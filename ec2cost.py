@@ -20,3 +20,13 @@ reducedcost = (nowcost - futurecost) / nowcost
 reducedcostnum = (nowcost - futurecost)
 print('reducedcost:' + str(reducedcost) + '%')
 print('reducedcostnum:'+ str(reducedcostnum) + 'USD')
+
+t3mediumauroradb = 0.126
+nowdbcost = t3mediumauroradb* oneyearhour
+print('db future all year cost:' + str(nowdbcost) + 'USD')
+futuredbcost = t3mediumauroradb * oneyearworkhour
+print('futuredbcost:'+ str(futuredbcost) + 'USD')
+reducedper = (nowdbcost - futuredbcost) / nowdbcost
+reduceddbcost = str(nowdbcost - futuredbcost)
+print('reduceddbcostper:' + str(reducedper) + '%')
+print('reduceddbcost:'+ reduceddbcost + 'USD')
