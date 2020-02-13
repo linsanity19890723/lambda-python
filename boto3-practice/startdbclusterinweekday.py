@@ -10,7 +10,7 @@ def lambda_handler(event, context):
 
 
 def dbcluster_start():
-    db_client = boto3.client('rds', region_name='ap-northeast-1')
+    db_client = boto3.client('rds', region_name='ap-southeast-1')
     db_data = db_client.describe_db_clusters(DBClusterIdentifier=DB_CLUSTER_IDENTIFIER)
     print(db_data)
     status = db_data['DBClusters'][0]['Status']
@@ -22,7 +22,7 @@ def dbcluster_start():
     week = day.weekday()
 
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('tw-holiday-data')
+    bucket = s3.Bucket('tw-holiday')
     obj = bucket.Object('holiday.txt')
     with open('/tmp/holiday.txt', 'wb') as data:
         obj.download_fileobj(data)
@@ -55,7 +55,7 @@ def dbcluster_start():
 def sns_publish(message):
     client = boto3.client('sns')
     response = client.publish(
-        TopicArn='arn:aws:sns:ap-northeast-1:849700601919:sendmail',
+        TopicArn='arn:aws:sns:ap-southeast-1:446876986950:stagingdb',
         Message=message,
         Subject='[' + os.environ['DB_CLUSTER_IDENTIFIER'] + ']:startup_dbcluster'
 
