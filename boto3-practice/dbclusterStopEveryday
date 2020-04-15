@@ -1,0 +1,10 @@
+import boto3
+dbcluster = 'uutz-stg-db-aurora-191014-cluster'
+#stop second db var setting
+#dbclusterTwo = 'myqueue-stg-db-cluster'
+def lambda_handler(event, context):
+    client = boto3.client('rds')
+    response = client.stop_db_cluster(DBClusterIdentifier = dbcluster)
+    #responseTwo = client.stop_db_cluster(DBClusterIdentifier = dbclusterTwo)
+    print(response)
+    return 0       
