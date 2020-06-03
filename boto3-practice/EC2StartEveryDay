@@ -1,0 +1,9 @@
+import boto3
+InstanceID = 'your instance id'
+
+def lambda_handler(event, context):
+    client = boto3.client('ec2')
+    response = client.start_db_cluster(instance_id = InstanceID)
+
+    print(response)
+    return 0      
