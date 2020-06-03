@@ -1,0 +1,10 @@
+import boto3
+region = 'your region'
+InstanceID = 'your instance id'
+
+def lambda_handler(event, context):
+    client = boto3.client('ec2', region_name=region)
+    response = client.stop_db_cluster(instance_id = InstanceID)
+
+    print(response)
+    return 0      
